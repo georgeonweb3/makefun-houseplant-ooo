@@ -22,6 +22,9 @@ def main() -> None:
     text = LINE.strip()
     assert 1 <= len(text) <= 120, "line must be 1-120 characters"
     assert "\n" not in text, "line must be a single line"
+    # Criterion 1 of the judge brief, enforced at runtime: the line must read
+    # as an out-of-office auto-reply, not just any joke about a plant.
+    assert text.startswith("Out of office"), "line must open as an out-of-office auto-reply"
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(text + "\n")
